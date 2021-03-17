@@ -1,3 +1,6 @@
+// react
+import { useState, useEffect } from 'react';
+
 // styling
 import {
   Box,
@@ -13,13 +16,12 @@ import {
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 
+// interfaces
+import ICategory from '../shared/ICategory';
+
 // components
 import DesktopNav from './DesktopNav';
 import MobileNav from './MobileNav';
-
-interface INavigation {
-  navItems: NavItem[];
-}
 
 export interface NavItem {
   label: string;
@@ -28,8 +30,42 @@ export interface NavItem {
   href?: string;
 }
 
-export default function Navigation({ navItems }: INavigation) {
+export default function Navigation() {
   const { isOpen, onToggle } = useDisclosure();
+  const [navItems, setNavItems] = useState<NavItem[]>([
+    {
+      label: 'Shuffle',
+      href: '#',
+    },
+    {
+      label: 'Trending',
+      href: '#',
+    },
+    {
+      label: 'Fresh',
+      href: '#',
+    },
+    {
+      label: 'Categories',
+      children: [],
+    },
+  ]);
+
+  useEffect(() => {
+    async function getAvailableCategories() {
+      fetch('/api/categories')
+        .then((response) => response.json())
+        .then((data) => {
+          navItems[3].children = data.categories.map((item: ICategory) => ({
+            label: item.name,
+            href: `/categories/${item.name}`,
+          }));
+          setNavItems([...navItems]);
+        });
+    }
+
+    getAvailableCategories();
+  }, [navItems]);
 
   return (
     <Box>
@@ -58,7 +94,7 @@ export default function Navigation({ navItems }: INavigation) {
             fontFamily={'heading'}
             color={useColorModeValue('gray.800', 'white')}
           >
-            Logo
+            loutl
           </Text>
 
           <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
