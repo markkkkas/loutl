@@ -1,4 +1,13 @@
-import { Box, Stack, Link, Popover, PopoverTrigger, PopoverContent, useColorModeValue } from '@chakra-ui/react';
+import {
+  Box,
+  Stack,
+  Link,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  Skeleton,
+  useColorModeValue,
+} from '@chakra-ui/react';
 
 // interfaces
 import { NavItem } from './Navigation';
@@ -42,9 +51,11 @@ export default function DesktopNav({ navItems }: IDesktopNav) {
                 minW={'sm'}
               >
                 <Stack>
-                  {navItem.children.map((child) => (
-                    <DesktopSubNav key={child.label} {...child} />
-                  ))}
+                  {navItem.children.length > 0
+                    ? navItem.children.map((child) => <DesktopSubNav key={child.label} {...child} />)
+                    : Array(5)
+                        .fill(0)
+                        .map((_, index) => <Skeleton key={index} height='20px' />)}
                 </Stack>
               </PopoverContent>
             )}
