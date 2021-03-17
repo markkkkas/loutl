@@ -12,3 +12,8 @@ model users {
   nickname String @unique @db.VarChar(50)
   password String @db.VarChar(100)
 }
+
+model categories {
+  id   Int    @unique @default(autoincrement())
+  name String @unique @db.VarChar(100)
+}
