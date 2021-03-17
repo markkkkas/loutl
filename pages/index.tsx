@@ -1,3 +1,3 @@
 export default function Home() {
-  return <h1>loutl / index</h1>;
+  return <h1>index</h1>;
 }
