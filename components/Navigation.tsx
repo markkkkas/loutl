@@ -13,8 +13,6 @@ import {
   Button,
   Stack,
   Collapse,
-  WrapItem,
-  Avatar,
   useColorModeValue,
   useBreakpointValue,
   useDisclosure,
@@ -30,6 +28,7 @@ import ICategory from '../shared/ICategory';
 // components
 import DesktopNav from './DesktopNav';
 import MobileNav from './MobileNav';
+import UserMenu from './UserMenu';
 
 export interface NavItem {
   label: string;
@@ -77,19 +76,8 @@ export default function Navigation() {
   }, []);
 
   function renderRightSide() {
-    if (loading) {
-      return <Text>Loading...</Text>;
-    }
-
-    if (session) {
-      const { user } = session;
-
-      return (
-        <WrapItem alignItems='center'>
-          <Text>{user.name.replace(' ', '')}</Text>
-          <Avatar marginLeft={4} size='sm' name={user.name} src={user.image} />
-        </WrapItem>
-      );
+    if (session || loading) {
+      return <UserMenu session={session} loading={loading} />;
     }
 
     return (
