@@ -1,8 +1,17 @@
-import { useRouter } from 'next/dist/client/router';
+// next
+import { useRouter } from 'next/router';
+
+// components
+import Navigation from '@/components/Navigation';
 
 export default function CategoryPage() {
   const router = useRouter();
   const { category } = router.query;
 
-  return <h1>Category: {category}</h1>;
+  return (
+    <>
+      <Navigation />
+      <h1>Category: {category}</h1>
+    </>
+  );
 }

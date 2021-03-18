@@ -1,6 +1,9 @@
 // react
 import { useState, useEffect } from 'react';
 
+// next-auth
+import { signIn, useSession } from 'next-auth/client';
+
 // styling
 import {
   Box,
@@ -10,6 +13,8 @@ import {
   Button,
   Stack,
   Collapse,
+  WrapItem,
+  Avatar,
   useColorModeValue,
   useBreakpointValue,
   useDisclosure,
@@ -35,18 +40,19 @@ export interface NavItem {
 
 export default function Navigation() {
   const { isOpen, onToggle } = useDisclosure();
+  const [session, loading] = useSession();
   const [navItems, setNavItems] = useState<NavItem[]>([
     {
       label: 'Shuffle',
-      href: '#',
+      href: '/',
     },
     {
       label: 'Trending',
-      href: '#',
+      href: '/trending',
     },
     {
       label: 'Fresh',
-      href: '#',
+      href: '/fresh',
     },
     {
       label: 'Categories',
@@ -68,7 +74,41 @@ export default function Navigation() {
     }
 
     getAvailableCategories();
-  }, [navItems]);
+  }, []);
+
+  function renderRightSide() {
+    if (loading) {
+      return <Text>Loading...</Text>;
+    }
+
+    if (session) {
+      const { user } = session;
+
+      return (
+        <WrapItem alignItems='center'>
+          <Text>{user.name.replace(' ', '')}</Text>
+          <Avatar marginLeft={4} size='sm' name={user.name} src={user.image} />
+        </WrapItem>
+      );
+    }
+
+    return (
+      <Button
+        display={{ base: 'none', md: 'inline-flex' }}
+        fontSize={'sm'}
+        fontWeight={600}
+        color={'white'}
+        bg={'pink.400'}
+        href={'#'}
+        _hover={{
+          bg: 'pink.300',
+        }}
+        onClick={() => signIn()}
+      >
+        Sign in
+      </Button>
+    );
+  }
 
   return (
     <Box>
@@ -106,22 +146,7 @@ export default function Navigation() {
         </Flex>
 
         <Stack flex={{ base: 1, md: 0 }} justify={'flex-end'} direction={'row'} spacing={6}>
-          <Button as={'a'} fontSize={'sm'} fontWeight={400} variant={'link'} href={'#'}>
-            Sign In
-          </Button>
-          <Button
-            display={{ base: 'none', md: 'inline-flex' }}
-            fontSize={'sm'}
-            fontWeight={600}
-            color={'white'}
-            bg={'pink.400'}
-            href={'#'}
-            _hover={{
-              bg: 'pink.300',
-            }}
-          >
-            Sign Up
-          </Button>
+          {renderRightSide()}
         </Stack>
       </Flex>
 
