@@ -33,12 +33,12 @@ export default function UserMenu({ session, loading }: IUserMenu) {
           {session.user.name}
         </MenuButton>
         <MenuList>
-          <MenuItem>
-            <Link href='/user/loutls'>My loutls</Link>
-          </MenuItem>
-          <MenuItem>
-            <Link href='/user/profile'>Profile</Link>
-          </MenuItem>
+          <Link style={{ textDecoration: 'none' }} href='/user/loutls'>
+            <MenuItem>My loutls</MenuItem>
+          </Link>
+          <Link style={{ textDecoration: 'none' }} href='/user/profile'>
+            <MenuItem>Profile</MenuItem>
+          </Link>
           <MenuDivider />
           <MenuItem onClick={() => signOut()}>Sign Out</MenuItem>
         </MenuList>
