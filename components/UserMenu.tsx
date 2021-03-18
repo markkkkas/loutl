@@ -13,6 +13,7 @@ import {
   Avatar,
   MenuDivider,
   Skeleton,
+  Link,
   SkeletonCircle,
 } from '@chakra-ui/react';
 import { ChevronDownIcon } from '@chakra-ui/icons';
@@ -32,8 +33,12 @@ export default function UserMenu({ session, loading }: IUserMenu) {
           {session.user.name}
         </MenuButton>
         <MenuList>
-          <MenuItem>My loutls</MenuItem>
-          <MenuItem>Profile</MenuItem>
+          <MenuItem>
+            <Link href='/user/loutls'>My loutls</Link>
+          </MenuItem>
+          <MenuItem>
+            <Link href='/user/profile'>Profile</Link>
+          </MenuItem>
           <MenuDivider />
           <MenuItem onClick={() => signOut()}>Sign Out</MenuItem>
         </MenuList>
