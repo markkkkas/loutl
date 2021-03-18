@@ -16,6 +16,9 @@ import {
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 
+// utils
+import { generateValidPath } from '@/utils/url';
+
 // interfaces
 import ICategory from '../shared/ICategory';
 
@@ -58,7 +61,7 @@ export default function Navigation() {
         .then((data) => {
           navItems[3].children = data.categories.map((item: ICategory) => ({
             label: item.name,
-            href: `/categories/${item.name}`,
+            href: generateValidPath('categories', item.name),
           }));
           setNavItems([...navItems]);
         });

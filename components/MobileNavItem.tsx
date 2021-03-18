@@ -42,6 +42,7 @@ export default function MobileNavItem({ label, children, href }: NavItem) {
           borderColor={useColorModeValue('gray.200', 'gray.700')}
           align={'start'}
         >
+          {/* TODO: Render skeleton if children array length == 0 */}
           {children &&
             children.map((child) => (
               <Link key={child.label} py={2} href={child.href}>

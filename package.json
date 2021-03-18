@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "prisma:introspect": "npx prisma introspect",
-    "prisma:generate": "npx prisma generate"
+    "prisma:generate": "npx prisma generate",
+    "prisma:migrate:dev": "npx prisma migrate dev",
+    "prisma:studio": "npx prisma studio"
   },
   "dependencies": {
     "@chakra-ui/icons": "^1.0.6",
@@ -17,10 +19,12 @@
     "@prisma/client": "^2.19.0",
     "framer-motion": "^3.10.5",
     "next": "10.0.9",
+    "next-auth": "^3.13.1",
     "react": "17.0.1",
     "react-dom": "17.0.1"
   },
   "devDependencies": {
+    "@types/next-auth": "^3.7.2",
     "@types/node": "^14.14.35",
     "@types/react": "^17.0.3",
     "prettier": "2.2.1",
