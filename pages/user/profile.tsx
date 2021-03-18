@@ -6,24 +6,25 @@ import { useSession } from 'next-auth/client';
 
 // chakra
 import Navigation from '@/components/Navigation';
+import Loading from '@/components/Loading';
 
 export default function Profile() {
   const [session, loading] = useSession();
   const router = useRouter();
 
   if (loading) {
-    return <h1>Loading...</h1>;
+    return <Loading />;
   }
 
   if (session) {
     return (
       <>
         <Navigation />
-        <h1>User Profile Page</h1>
+        <h1>User Loutls Page</h1>
       </>
     );
   }
 
   router.push('/');
-  return <h1>Loading...</h1>;
+  return <Loading />;
 }

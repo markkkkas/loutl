@@ -6,13 +6,14 @@ import { useSession } from 'next-auth/client';
 
 // chakra
 import Navigation from '@/components/Navigation';
+import Loading from '@/components/Loading';
 
 export default function Loutls() {
   const [session, loading] = useSession();
   const router = useRouter();
 
   if (loading) {
-    return <h1>Loading...</h1>;
+    return <Loading />;
   }
 
   if (session) {
@@ -25,5 +26,5 @@ export default function Loutls() {
   }
 
   router.push('/');
-  return <h1>Loading...</h1>;
+  return <Loading />;
 }
