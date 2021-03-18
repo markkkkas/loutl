@@ -20,7 +20,6 @@
     "framer-motion": "3.6.7",
     "next": "10.0.9",
     "next-auth": "^3.13.1",
-    "ngrok": "^3.4.1",
     "react": "17.0.1",
     "react-dom": "17.0.1"
   },
