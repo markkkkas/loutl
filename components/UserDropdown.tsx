@@ -32,13 +32,13 @@ export default function UserDropdown() {
   }
 
   return (
-    <Flex alignItems={'center'}>
-      <Button variant={'solid'} colorScheme={'teal'} size={'sm'} mr={4} leftIcon={<AddIcon />}>
+    <Flex alignItems='center'>
+      <Button variant='solid' colorScheme='teal' size='sm' mr={4} leftIcon={<AddIcon />}>
         New loutl
       </Button>
       <Menu>
-        <MenuButton as={Button} rounded={'full'} variant={'link'} cursor={'pointer'}>
-          <Avatar size={'sm'} src={session.user.image} />
+        <MenuButton as={Button} rounded='full' variant='link' cursor='pointer'>
+          <Avatar size='sm' src={session.user.image} />
         </MenuButton>
         <MenuList>
           <NextLink href={user.profile.href}>

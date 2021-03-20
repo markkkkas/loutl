@@ -21,17 +21,17 @@ export default function Navigation({ children }: INavigation) {
   return (
     <>
       <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
-        <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
+        <Flex h={16} alignItems='center' justifyContent='space-between'>
           <IconButton
-            size={'md'}
+            size='md'
             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-            aria-label={'Open Menu'}
+            aria-label='Open Menu'
             display={{ md: !isOpen ? 'none' : 'inherit' }}
             onClick={isOpen ? onClose : onOpen}
           />
-          <HStack spacing={8} alignItems={'center'}>
-            <Box>Logo</Box>
-            <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
+          <HStack spacing={8} alignItems='center'>
+            <Box>loutl</Box>
+            <HStack as='nav' spacing={4} display={{ base: 'none', md: 'flex' }}>
               {Object.keys(routes.navigation).map((route, index) => (
                 <NavLink key={index} href={routes.navigation[route].href}>
                   {routes.navigation[route].name}
