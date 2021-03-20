@@ -5,6 +5,7 @@
       "@/components/*":["./components/*"],
       "@/pages/*":["./pages/*"],
       "@/utils/*":["./utils/*"],
+      "@/constants/*":["./constants/*"],
     },
     "target": "es5",
     "lib": [
