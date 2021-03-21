@@ -5,7 +5,7 @@ export default function Profile() {
   return <h1>User Profile Page</h1>;
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const session = await getSession();
 
   if (!session) {

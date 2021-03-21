@@ -9,7 +9,7 @@ export default function Loutls() {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const session = await getSession();
 
   if (!session) {
