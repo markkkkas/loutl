@@ -6,7 +6,7 @@ import TopFiveUsers from '@/components/TopFiveUsers';
 
 export default function Home() {
   return (
-    <Grid templateColumns={['1fr', '1fr', 'repeat(4, 1fr)']} gap={6}>
+    <Grid templateColumns={['1fr', '1fr', 'repeat(4, 1fr)']} columnGap={[0, 0, 6]} rowGap={[6, 6, 0]}>
       <GridItem w='100%' p={6} boxShadow='xs' rounded='md' bg='white'>
         <Heading size='lg' mb={5}>
           Categories

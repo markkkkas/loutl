@@ -1,16 +1,22 @@
 // next
 import { NextApiRequest, NextApiResponse } from 'next';
-import { count } from 'node:console';
 
 // prisma
 import prisma from '../../../prismaClient';
 
+interface IQuery {
+  count?: string;
+  by?: string;
+}
+
 export default async function (req: NextApiRequest, res: NextApiResponse) {
+  const query: IQuery = req.query;
+
   switch (req.method) {
     case 'GET':
       const users = await prisma.user.findMany({
         select: { name: true, image: true },
-        take: parseInt(req.query.count as string),
+        take: parseInt(query.count),
       });
 
       return res.status(200).json({ success: true, users: users });
