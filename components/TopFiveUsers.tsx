@@ -1,26 +1,42 @@
-// react
-import { useEffect, useState } from 'react';
+// swr
+import useSWR from 'swr';
 
 // chakra
-import { GridItem } from '@chakra-ui/layout';
+import { GridItem, Skeleton, SkeletonCircle, Box, HStack, SkeletonText, Text, Avatar } from '@chakra-ui/react';
 import UserBadge from './UserBadge';
 
+import fetcher from 'fetcher';
+
+interface IUser {
+  image: string;
+  name: string;
+}
+
 export default function TopFiveUsers() {
-  const [users, setUsers] = useState([]);
+  const { data, error } = useSWR('/api/users', fetcher);
 
-  useEffect(() => {
-    async function getTopFiveUsers() {
-      fetch('/api/users')
-        .then((response) => response.json())
-        .then((data) => setUsers(data.users));
-    }
-
-    getTopFiveUsers();
-  }, []);
+  if (error) return <Text align='center'>Error while fetching data...</Text>;
+  if (!data) {
+    return (
+      <>
+        {[0, 0, 0, 0, 0].map((_, index) => (
+          <GridItem key={index}>
+            <HStack spacing={4}>
+              <SkeletonCircle size='48px' />
+              <Box flexDir='column' w='50%'>
+                <Skeleton w='100%' h='3' mb={3} />
+                <Skeleton w='100%' h='3' />
+              </Box>
+            </HStack>
+          </GridItem>
+        ))}
+      </>
+    );
+  }
 
   return (
     <>
-      {users.map((item, index) => (
+      {data.users.map((item: IUser, index: number) => (
         <GridItem key={index}>
           <UserBadge avatar={item.image} name={item.name} loutls={1} />
         </GridItem>
