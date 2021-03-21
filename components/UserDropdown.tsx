@@ -5,7 +5,7 @@ import NextLink from 'next/link';
 import { useSession, signIn, signOut } from 'next-auth/client';
 
 // chakra
-import { Flex, Avatar, Button, Menu, MenuButton, MenuList, MenuItem, MenuDivider } from '@chakra-ui/react';
+import { Flex, Avatar, Button, Menu, MenuButton, MenuList, MenuItem, AvatarBadge, MenuDivider } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
 
 // react-icons
@@ -38,7 +38,9 @@ export default function UserDropdown() {
       </Button>
       <Menu>
         <MenuButton as={Button} rounded='full' variant='link' cursor='pointer'>
-          <Avatar size='sm' src={session.user.image} />
+          <Avatar size='sm' src={session.user.image}>
+            <AvatarBadge boxSize='1.25em' bg='green.500' />
+          </Avatar>
         </MenuButton>
         <MenuList>
           <NextLink href={user.profile.href}>
