@@ -2,7 +2,7 @@
 import useSWR from 'swr';
 
 // chakra
-import { GridItem, Skeleton, SkeletonCircle, Box, HStack, SkeletonText, Text, Avatar } from '@chakra-ui/react';
+import { GridItem, Skeleton, SkeletonCircle, Box, HStack, Text } from '@chakra-ui/react';
 import UserBadge from './UserBadge';
 
 import fetcher from 'fetcher';

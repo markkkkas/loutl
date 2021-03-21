@@ -5,7 +5,18 @@ import NextLink from 'next/link';
 import { useSession, signIn, signOut } from 'next-auth/client';
 
 // chakra
-import { Flex, Avatar, Button, Menu, MenuButton, MenuList, MenuItem, AvatarBadge, MenuDivider } from '@chakra-ui/react';
+import {
+  Flex,
+  Avatar,
+  Button,
+  Menu,
+  MenuButton,
+  Spinner,
+  MenuList,
+  MenuItem,
+  AvatarBadge,
+  MenuDivider,
+} from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
 
 // react-icons
@@ -18,7 +29,7 @@ export default function UserDropdown() {
   const { user } = routes;
 
   if (loading) {
-    return <h1>Loading</h1>;
+    return <Spinner size='lg' />;
   }
 
   if (!session) {
