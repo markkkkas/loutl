@@ -21,7 +21,7 @@ export default function TopFiveUsers() {
   return (
     <>
       {users.map((item, index) => (
-        <GridItem key={index} display='flex' justifyContent='center'>
+        <GridItem key={index}>
           <UserBadge avatar={item.image} name={item.name} loutls={1} />
         </GridItem>
       ))}
