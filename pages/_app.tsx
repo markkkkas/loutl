@@ -1,7 +1,7 @@
 // next
+import { NextComponentType, NextPageContext } from 'next';
 import Head from 'next/head';
 import { AppProps } from 'next/app';
-import { useRouter } from 'next/router';
 
 // next-auth
 import { Provider } from 'next-auth/client';
@@ -11,13 +11,25 @@ import { ChakraProvider } from '@chakra-ui/react';
 
 // components
 import Navigation from '@/components/Navigation/index';
+import ProtectedRoute from '@/components/ProtectedRoute';
 
-function App({ Component, pageProps }: AppProps) {
-  function renderPageWithNavigation() {
-    return (
-      <Navigation>
+// utils
+import { AuthEnabledComponentConfig } from '@/utils/auth';
+
+type NextComponentWithAuth = NextComponentType<NextPageContext, any, {}> & Partial<AuthEnabledComponentConfig>;
+
+interface CustomApp extends AppProps {
+  Component: NextComponentWithAuth;
+}
+
+function App({ Component, pageProps }: CustomApp) {
+  function renderComponent() {
+    return Component.authenticationEnabled ? (
+      <ProtectedRoute>
         <Component {...pageProps} />
-      </Navigation>
+      </ProtectedRoute>
+    ) : (
+      <Component {...pageProps} />
     );
   }
 
@@ -26,7 +38,9 @@ function App({ Component, pageProps }: AppProps) {
       <Head>
         <title>loutl - laugh out loud</title>
       </Head>
-      <ChakraProvider>{renderPageWithNavigation()}</ChakraProvider>
+      <ChakraProvider>
+        <Navigation>{renderComponent()}</Navigation>
+      </ChakraProvider>
     </Provider>
   );
 }
