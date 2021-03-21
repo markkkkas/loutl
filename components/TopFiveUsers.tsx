@@ -13,7 +13,7 @@ interface IUser {
 }
 
 export default function TopFiveUsers() {
-  const { data, error } = useSWR('/api/users', fetcher);
+  const { data, error } = useSWR('/api/users/top?count=5&by=loutls', fetcher);
 
   if (error) return <Text align='center'>Error while fetching data...</Text>;
   if (!data) {
