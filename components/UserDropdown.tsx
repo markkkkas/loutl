@@ -1,3 +1,6 @@
+// react
+import { useState } from 'react';
+
 // next
 import NextLink from 'next/link';
 
@@ -26,6 +29,7 @@ import routes from '@/constants/routes';
 
 export default function UserDropdown() {
   const [session, loading] = useSession();
+  const [buttonLoading, setButtonLoading] = useState(false);
   const { user } = routes;
 
   if (loading) {
@@ -35,7 +39,17 @@ export default function UserDropdown() {
   if (!session) {
     return (
       <Flex alignItems='center'>
-        <Button variant='solid' colorScheme='blackAlpha' rightIcon={<FaGithubAlt />} onClick={() => signIn('github')}>
+        <Button
+          isLoading={buttonLoading}
+          loadingText='Signing in...'
+          variant='solid'
+          colorScheme='blackAlpha'
+          rightIcon={<FaGithubAlt />}
+          onClick={() => {
+            setButtonLoading(true);
+            signIn('github');
+          }}
+        >
           Sign in with GitHub
         </Button>
       </Flex>
