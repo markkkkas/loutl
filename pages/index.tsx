@@ -7,17 +7,17 @@ import TopFiveUsers from '@/components/TopFiveUsers';
 export default function Home() {
   return (
     <Grid templateColumns={['1fr', '1fr', 'repeat(4, 1fr)']} gap={6}>
-      <GridItem p={6} boxShadow='xs' rounded='md' bg='white'>
+      <GridItem w='100%' p={6} boxShadow='xs' rounded='md' bg='white'>
         <Heading size='lg' mb={5} align='center'>
           Categories
         </Heading>
       </GridItem>
-      <GridItem colSpan={2} p={6} boxShadow='xs' rounded='md' bg='white'>
+      <GridItem w='100%' colSpan={2} p={6} boxShadow='xs' rounded='md' bg='white'>
         <Heading size='lg' mb={5} align='center'>
           Random loutls
         </Heading>
       </GridItem>
-      <GridItem p={6} boxShadow='xs' rounded='md' bg='white'>
+      <GridItem w='100%' p={6} boxShadow='xs' rounded='md' bg='white'>
         <Heading size='lg' mb={5} align='center'>
           Top 5 loutlers
         </Heading>
