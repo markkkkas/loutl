@@ -34,9 +34,7 @@ export default function UserDropdown() {
   const [buttonLoading, setButtonLoading] = useState(false);
   const { user } = routes;
 
-  const isLoading = true;
-
-  if (isLoading) {
+  if (loading) {
     return (
       <Flex alignItems='center'>
         <Box display='flex' alignContent='center' flexDir='column' mr={4}>
