@@ -15,6 +15,7 @@ import {
   Menu,
   MenuButton,
   SkeletonCircle,
+  Box,
   Skeleton,
   MenuList,
   MenuItem,
@@ -33,10 +34,15 @@ export default function UserDropdown() {
   const [buttonLoading, setButtonLoading] = useState(false);
   const { user } = routes;
 
-  if (loading) {
+  const isLoading = true;
+
+  if (isLoading) {
     return (
       <Flex alignItems='center'>
-        <Skeleton w='110px' h='32px' mr={4} />
+        <Box display='flex' alignContent='center' flexDir='column' mr={4}>
+          <Skeleton w='110px' h='10px' mb={1} />
+          <Skeleton w='110px' h='10px' />
+        </Box>
         <SkeletonCircle size='32px' />
       </Flex>
     );
