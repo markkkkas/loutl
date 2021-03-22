@@ -12,6 +12,10 @@ interface IQuery {
 export default async function (req: NextApiRequest, res: NextApiResponse) {
   const query: IQuery = req.query;
 
+  if (!query.count || !query.by) {
+    return res.status(400).json({ success: false, message: 'Missing count or by parameters' });
+  }
+
   switch (req.method) {
     case 'GET':
       const users = await prisma.user.findMany({

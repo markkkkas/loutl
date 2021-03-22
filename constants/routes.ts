@@ -5,7 +5,7 @@ interface IRoute {
 
 interface IRoutes {
   navigation: {
-    shuffle: IRoute;
+    home: IRoute;
     trending: IRoute;
     fresh: IRoute;
   };
@@ -17,8 +17,8 @@ interface IRoutes {
 
 const routes: IRoutes = {
   navigation: {
-    shuffle: {
-      name: 'Shuffle',
+    home: {
+      name: 'Home',
       href: '/',
     },
     trending: {
