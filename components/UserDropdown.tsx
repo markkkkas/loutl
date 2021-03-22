@@ -14,7 +14,8 @@ import {
   Button,
   Menu,
   MenuButton,
-  Spinner,
+  SkeletonCircle,
+  Skeleton,
   MenuList,
   MenuItem,
   AvatarBadge,
@@ -33,7 +34,12 @@ export default function UserDropdown() {
   const { user } = routes;
 
   if (loading) {
-    return <Spinner size='lg' />;
+    return (
+      <Flex alignItems='center'>
+        <Skeleton w='110px' h='32px' mr={4} />
+        <SkeletonCircle size='32px' />
+      </Flex>
+    );
   }
 
   if (!session) {
