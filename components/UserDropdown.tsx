@@ -5,7 +5,10 @@ import { useState } from 'react';
 import NextLink from 'next/link';
 
 // next-auth
-import { useSession, signIn, signOut } from 'next-auth/client';
+import { signIn, signOut } from 'next-auth/client';
+
+// swr
+import useSWR from 'swr';
 
 // chakra
 import {
@@ -21,6 +24,7 @@ import {
   MenuItem,
   AvatarBadge,
   MenuDivider,
+  Text,
 } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
 
@@ -28,13 +32,14 @@ import { AddIcon } from '@chakra-ui/icons';
 import { FaGithubAlt } from 'react-icons/fa';
 
 import routes from '@/constants/routes';
+import fetcher from 'fetcher';
 
 export default function UserDropdown() {
-  const [session, loading] = useSession();
+  const { data, error } = useSWR('/api/user', fetcher);
   const [buttonLoading, setButtonLoading] = useState(false);
   const { user } = routes;
 
-  if (loading) {
+  if (!data) {
     return (
       <Flex alignItems='center'>
         <Box display='flex' alignContent='center' flexDir='column' mr={4}>
@@ -46,7 +51,7 @@ export default function UserDropdown() {
     );
   }
 
-  if (!session) {
+  if (!data.authenticated) {
     return (
       <Flex alignItems='center'>
         <Button
@@ -66,6 +71,10 @@ export default function UserDropdown() {
     );
   }
 
+  if (error) {
+    return <Text>Error while fetching data...</Text>;
+  }
+
   return (
     <Flex alignItems='center'>
       <Button variant='solid' colorScheme='teal' size='sm' mr={4} leftIcon={<AddIcon />}>
@@ -73,7 +82,7 @@ export default function UserDropdown() {
       </Button>
       <Menu>
         <MenuButton as={Button} rounded='full' variant='link' cursor='pointer'>
-          <Avatar size='sm' src={session.user.image}>
+          <Avatar size='sm' src={data.image}>
             <AvatarBadge boxSize='1.25em' bg='green.500' />
           </Avatar>
         </MenuButton>
