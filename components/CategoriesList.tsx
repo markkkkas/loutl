@@ -21,7 +21,7 @@ export default function CategoriesList() {
   if (!data) {
     return (
       <>
-        {[0, 0, 0, 0, 0].map((_, index) => (
+        {Array(5).map((_, index) => (
           <GridItem key={index}>
             <Skeleton w='70%' h='7' />
           </GridItem>

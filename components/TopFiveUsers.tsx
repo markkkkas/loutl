@@ -19,7 +19,7 @@ export default function TopFiveUsers() {
   if (!data) {
     return (
       <>
-        {[0, 0, 0, 0, 0].map((_, index) => (
+        {Array(5).map((_, index) => (
           <GridItem key={index}>
             <HStack spacing={4}>
               <SkeletonCircle size='48px' />
