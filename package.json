@@ -5,11 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "prisma:introspect": "npx prisma introspect",
-    "prisma:generate": "npx prisma generate",
-    "prisma:migrate:dev": "npx prisma migrate dev",
-    "prisma:studio": "npx prisma studio"
+    "build:prod": "npx prisma migrate prod && next build",
+    "start": "next start"
   },
   "dependencies": {
     "@chakra-ui/icons": "^1.0.6",
