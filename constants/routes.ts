@@ -7,7 +7,6 @@ interface IRoutes {
   navigation: {
     home: IRoute;
     trending: IRoute;
-    fresh: IRoute;
   };
   user: {
     profile: IRoute;
@@ -24,10 +23,6 @@ const routes: IRoutes = {
     trending: {
       name: 'Trending',
       href: '/trending',
-    },
-    fresh: {
-      name: 'Fresh',
-      href: '/fresh',
     },
   },
   user: {

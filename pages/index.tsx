@@ -4,7 +4,7 @@ import { Grid, Heading, GridItem } from '@chakra-ui/react';
 // components
 import TopFiveUsers from '@/components/TopFiveUsers';
 import CategoriesList from '@/components/CategoriesList';
-import Loutl from '@/components/Loutl';
+import LoutlsList from '@/components/LoutlsList';
 
 export default function Home() {
   return (
@@ -19,7 +19,7 @@ export default function Home() {
       </GridItem>
       <GridItem w='100%' colSpan={2} p={6}>
         <Grid templateRows='repeat(1, 1fr)' gap={10}>
-          <Loutl />
+          <LoutlsList />
         </Grid>
       </GridItem>
       <GridItem w='100%' p={6}>

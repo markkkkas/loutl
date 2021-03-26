@@ -11,6 +11,7 @@ model Categories {
   id   Int    @unique @default(autoincrement())
   name String @unique @db.VarChar(100)
 
+  Loutl Loutl[]
   @@map("categories")
 }
 
@@ -54,6 +55,7 @@ model User {
   createdAt     DateTime  @default(now()) @map("created_at")
   updatedAt     DateTime  @default(now()) @map("updated_at")
 
+  Loutl Loutl[]
   @@map("users")
 }
 
@@ -66,4 +68,17 @@ model VerificationRequest {
   updatedAt  DateTime @default(now()) @map("updated_at")
 
   @@map("verification_requests")
+}
+
+model Loutl {
+  id          Int        @id @default(autoincrement())
+  userId      Int        @map("user_id")
+  categoryId  Int        @default(1) @map("category_id")
+  text        String
+  content     String
+  publishedAt DateTime   @default(now()) @map("published_at")
+  User        User       @relation(fields: [userId], references: [id])
+  Category    Categories @relation(fields: [categoryId], references: [id])
+
+  @@map("loutls")
 }
